@@ -9,7 +9,7 @@
 '''
 def is_palindrome(str):
     re = str[::-1]
-    if(str==re):
+    if str==re:
         print(True)
     else:
         print(False)
