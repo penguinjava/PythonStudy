@@ -21,41 +21,55 @@ def loop():
                 
         elif num == 2:
             print(f"{'[ 2번 출력 ]':-^50}")
-            print(data)
+            nameVar = data['성명']
+            numVar = data['전화번호']
+            adVar = data['주소']
+            print(f"{'성명':<5} {'전화번호':<10} {'주소':<10}")
+            print("-" * 50)
+            for name,num,addr in zip(nameVar,numVar,adVar):
+                print(f"{name:<10} {num:<10} {addr:<10}")
 
         elif num == 3:
             print(f"{'[ 3번 검색 ]':-^50}")
             search = input("검색하실 성명을 입력하세요 → ")
+            var = data['성명']
             count = 0
-            val[count] = data['성명']
-            numVal[count] = data['전화번호']
-            adVal[count] = data['주소']
-            
-            data2 = {
-                '성명'
-            }
-            for v in val:
-                if search == v:
-                    print()
+            for v in var:
+                if v == search:
+                    print(f"{'성명':<5} {'전화번호':<10} {'주소':<10}")
+                    print("-" * 50)
+                    print(f"{data['성명'][count]:<5} {data['전화번호'][count]:<10} {data['주소'][count]:<10}")
                     break
                 else:
-                    count+=1
+                    count += 1
 
         elif num == 4:
-            print(f"{'[ 4번 수정 ]':-^50}")
-            search = input("수정하실 성명을 입력하세요 → ")
+            print(f"{'[ 3번 검색 ]':-^50}")
+            search = input("검색하실 성명을 입력하세요 → ")
+            var = data['성명']
             count = 0
-            val = data['성명']
-            for v in val:
-                if search == v:
-                    print(pd.DataFrame(data).iloc[count].to_string())
+            for v in var:
+                if v == search:
+                    data['성명'][count] = input("변경할 이름 입력 → ")
+                    data['전화번호'][count] = input("변경할 전화번호 입력 → ")
+                    data['주소'][count] = input("변경할 주소 입력 → ")
                     break
                 else:
-                    count+=1
+                    count += 1
 
         elif num == 5:
             print(f"{'[ 5번 삭제 ]':-^50}")
-
+            search = input("검색하실 성명을 입력하세요 → ")
+            var = data['성명']
+            count = 0
+            for v in var:
+                if v == search:
+                    del data['성명'][count]
+                    del data['전화번호'][count]
+                    del data['주소'][count]
+                    break
+                else:
+                    count += 1
 
         else:
             print(f"{'[ 6번 종료 ]':-^50}")
